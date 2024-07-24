@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于 on Ystars</title>
-    <link>Yaostars.github.io/zh-cn/about/</link>
+    <link>https://yaostars.github.io/zh-cn/about/</link>
     <description>Recent content in 关于 on Ystars</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>&amp;copy; 2024 [姚昕成](https://github.com/Yaostars)</copyright>
-    <atom:link href="Yaostars.github.io/zh-cn/about/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yaostars.github.io/zh-cn/about/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

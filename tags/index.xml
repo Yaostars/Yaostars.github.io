@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ystars</title>
-    <link>Yaostars.github.io/tags/</link>
+    <link>https://yaostars.github.io/tags/</link>
     <description>Recent content in Tags on Ystars</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 [Xincheng Yao](https://github.com/Yaostars)</copyright>
     <lastBuildDate>Tue, 28 May 2024 14:00:00 +0800</lastBuildDate>
-    <atom:link href="Yaostars.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yaostars.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blogging</title>
-      <link>Yaostars.github.io/tags/blogging/</link>
+      <link>https://yaostars.github.io/tags/blogging/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>Yaostars.github.io/tags/blogging/</guid>
+      <guid>https://yaostars.github.io/tags/blogging/</guid>
       <description></description>
     </item>
     <item>
       <title>Setup-Guides</title>
-      <link>Yaostars.github.io/tags/setup-guides/</link>
+      <link>https://yaostars.github.io/tags/setup-guides/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>Yaostars.github.io/tags/setup-guides/</guid>
+      <guid>https://yaostars.github.io/tags/setup-guides/</guid>
       <description></description>
     </item>
     <item>
       <title>Congo</title>
-      <link>Yaostars.github.io/tags/congo/</link>
+      <link>https://yaostars.github.io/tags/congo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>Yaostars.github.io/tags/congo/</guid>
+      <guid>https://yaostars.github.io/tags/congo/</guid>
       <description></description>
     </item>
     <item>
       <title>Hugo</title>
-      <link>Yaostars.github.io/tags/hugo/</link>
+      <link>https://yaostars.github.io/tags/hugo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>Yaostars.github.io/tags/hugo/</guid>
+      <guid>https://yaostars.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Markdown</title>
-      <link>Yaostars.github.io/tags/markdown/</link>
+      <link>https://yaostars.github.io/tags/markdown/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>Yaostars.github.io/tags/markdown/</guid>
+      <guid>https://yaostars.github.io/tags/markdown/</guid>
       <description></description>
     </item>
     <item>
       <title>Shortcodes</title>
-      <link>Yaostars.github.io/tags/shortcodes/</link>
+      <link>https://yaostars.github.io/tags/shortcodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>Yaostars.github.io/tags/shortcodes/</guid>
+      <guid>https://yaostars.github.io/tags/shortcodes/</guid>
       <description></description>
     </item>
   </channel>

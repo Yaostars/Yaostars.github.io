@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>我的项目 on Ystars</title>
-    <link>Yaostars.github.io/zh-cn/life/</link>
+    <link>https://yaostars.github.io/zh-cn/life/</link>
     <description>Recent content in 我的项目 on Ystars</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>&amp;copy; 2024 [姚昕成](https://github.com/Yaostars)</copyright>
-    <atom:link href="Yaostars.github.io/zh-cn/life/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yaostars.github.io/zh-cn/life/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
