@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Ystars</title>
+    <link>Yaostars.github.io/zh-cn/categories/</link>
+    <description>Recent content in Categories on Ystars</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2024 [姚昕成](https://github.com/Yaostars)</copyright>
+    <atom:link href="Yaostars.github.io/zh-cn/categories/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

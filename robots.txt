@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: Yaostars.github.io/sitemap.xml
