@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ystars</title>
-    <link>https://yaostars.github.io/zh-cn/tags/</link>
+    <link>https://yaostars.netlify.app/zh-cn/tags/</link>
     <description>Recent content in Tags on Ystars</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>&amp;copy; 2024 [姚昕成](https://github.com/Yaostars)</copyright>
     <lastBuildDate>Tue, 28 May 2024 14:00:00 +0800</lastBuildDate>
-    <atom:link href="https://yaostars.github.io/zh-cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yaostars.netlify.app/zh-cn/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blogging</title>
-      <link>https://yaostars.github.io/zh-cn/tags/blogging/</link>
+      <link>https://yaostars.netlify.app/zh-cn/tags/blogging/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yaostars.github.io/zh-cn/tags/blogging/</guid>
+      <guid>https://yaostars.netlify.app/zh-cn/tags/blogging/</guid>
       <description></description>
     </item>
     <item>
       <title>Setup-Guides</title>
-      <link>https://yaostars.github.io/zh-cn/tags/setup-guides/</link>
+      <link>https://yaostars.netlify.app/zh-cn/tags/setup-guides/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yaostars.github.io/zh-cn/tags/setup-guides/</guid>
+      <guid>https://yaostars.netlify.app/zh-cn/tags/setup-guides/</guid>
       <description></description>
     </item>
   </channel>
