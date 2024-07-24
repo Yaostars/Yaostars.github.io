@@ -10,6 +10,22 @@
   
     
       <url>
+            <loc>https://yaostars.github.io/about/about/</loc>
+            <xhtml:link
+              rel="alternate"
+              hreflang="zh-cn"
+              href="https://yaostars.github.io/zh-cn/about/about/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="https://yaostars.github.io/about/about/"
+              />
+          </url>
+    
+  
+    
+      <url>
             <loc>https://yaostars.github.io/about/</loc>
             <xhtml:link
               rel="alternate"

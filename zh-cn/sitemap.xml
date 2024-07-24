@@ -3,6 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     
+      <url>
+            <loc>https://yaostars.github.io/zh-cn/about/</loc>
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="https://yaostars.github.io/about/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="zh-cn"
+              href="https://yaostars.github.io/zh-cn/about/"
+              />
+          </url>
+    
+  
+    
   
     
   
@@ -24,16 +40,16 @@
   
     
       <url>
-            <loc>https://yaostars.github.io/zh-cn/about/</loc>
+            <loc>https://yaostars.github.io/zh-cn/about/about/</loc>
             <xhtml:link
               rel="alternate"
               hreflang="en"
-              href="https://yaostars.github.io/about/"
+              href="https://yaostars.github.io/about/about/"
               />
             <xhtml:link
               rel="alternate"
               hreflang="zh-cn"
-              href="https://yaostars.github.io/zh-cn/about/"
+              href="https://yaostars.github.io/zh-cn/about/about/"
               />
           </url>
     
