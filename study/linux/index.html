@@ -36,12 +36,14 @@
   
   
   
+    
+  
   
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
-    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
+    href="/css/main.bundle.min.312091a503e93a0a678bf93c11be31486411fb9905862020b66954c1ceb10990.css"
+    integrity="sha256-MSCRpQPpOgpni/k8Eb4xSGQR&#43;5kFhiAgtmlUwc6xCZA="
   />
   
     
@@ -138,7 +140,7 @@
     "keywords": ["Linux"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1821"
+    "wordCount": "1827"
   }
   </script>
 
@@ -698,7 +700,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-24 08:00:00 &#43;0800 CST">24 July 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1821 words</span><span class="px-2 text-primary-500">&middot;</span>
+      <time datetime="2024-07-24 08:00:00 &#43;0800 CST">24 July 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1827 words</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -849,7 +851,7 @@
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <h2 id="1-basic-knowledge" class="relative group">1. Basic Knowledge <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-basic-knowledge" aria-label="Anchor">#</a></span></h2><h3 id="installation" class="relative group">Installation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#installation" aria-label="Anchor">#</a></span></h3><p><a href="https://www.runoob.com/linux/linux-install.html" target="_blank" rel="noreferrer">Reference</a></p>
-<h3 id="os-basic-knowledge" class="relative group">OS Basic Knowledge <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#os-basic-knowledge" aria-label="Anchor">#</a></span></h3><p>I previously studied courses on <a href="https://www.bilibili.com/video/BV1YE411D7nH/?spm_id_from=333.337.search-card.all.click&amp;vd_source=7216ca184965a2a92e0c1623263f4390" target="_blank" rel="noreferrer">CSKaoyan</a>, but other tutorials are also available.</p>
+<h3 id="os-basic-knowledge" class="relative group">OS Basic Knowledge <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#os-basic-knowledge" aria-label="Anchor">#</a></span></h3><p>I previously studied courses on <a href="https://www.bilibili.com/video/BV1YE411D7nH/?share_source=copy_web&amp;vd_source=981f0561b8f4cc85637fb5cae9d856cf" target="_blank" rel="noreferrer">CSKaoyan</a>, but other tutorials are also available.</p>
 <h3 id="remote-link-to-linux" class="relative group">Remote Link to Linux <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#remote-link-to-linux" aria-label="Anchor">#</a></span></h3><p>Just need to install a FinalShell SSH Tool to complete remote link. (<a href="https://www.bilibili.com/video/BV1n84y1i7td?p=8&amp;vd_source=7216ca184965a2a92e0c1623263f4390" target="_blank" rel="noreferrer">Installation Tutorial</a>)</p>
 <h3 id="wsl" class="relative group">WSL <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#wsl" aria-label="Anchor">#</a></span></h3><p>As an auxiliary tool for Linux, <a href="https://learn.microsoft.com/zh-cn/windows/wsl/install" target="_blank" rel="noreferrer">WSL</a> is very convenient in some situations.</p>
 <h3 id="snapshot" class="relative group">Snapshot <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#snapshot" aria-label="Anchor">#</a></span></h3><p>A snapshot is used to save the current state of your virtual machine as a backup.</p>
@@ -922,28 +924,52 @@ System defaults to the &lsquo;home/&rsquo; directory.</p>
 <h2 id="2-orders-and-functions" class="relative group">2. Orders and Functions <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-orders-and-functions" aria-label="Anchor">#</a></span></h2><p>Linux orders often looks like:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">command [-options] [parameter]
 </span></span></code></pre></div><h3 id="ls" class="relative group">ls <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ls" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ls [-a -l -h] [path]
-</span></span></code></pre></div><p>-a: show all (including hidden) files and folders<br/>
--h: make information easier to read (often used together with &lsquo;-l&rsquo;)<br/>
--l: list detailed information about files and folders</p>
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>-a</strong>: show all (including hidden) files and folders<br/>
+<strong>-h</strong>: make information easier to read (often used together with &lsquo;-l&rsquo;)<br/>
+<strong>-l</strong>: list detailed information about files and folders</span>
+</div>
+
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ls -alh /	# show detailed information neatly of all files and folders in root directory
-</span></span></code></pre></div><h3 id="cd--pwd--mkdir" class="relative group">cd &amp; pwd &amp; mkdir <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#cd--pwd--mkdir" aria-label="Anchor">#</a></span></h3><p>cd: enter to path directory<br/>
-pwd: show current work path<br/>
-mkdir: create a new folder<br/></p>
+</span></span></code></pre></div><h3 id="cd--pwd--mkdir" class="relative group">cd &amp; pwd &amp; mkdir <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#cd--pwd--mkdir" aria-label="Anchor">#</a></span></h3><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>cd</strong>: enter to path directory<br/>
+<strong>pwd</strong>: show current work path<br/>
+<strong>mkdir</strong>: create a new folder<br/></span>
+</div>
+
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">cd bob
 </span></span><span class="line"><span class="cl">pwd
 </span></span><span class="line"><span class="cl">mkdir [bob/]new_folder
-</span></span></code></pre></div><h3 id="touch--cat--more" class="relative group">touch &amp; cat &amp; more <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#touch--cat--more" aria-label="Anchor">#</a></span></h3><p>touch: create a new file<br/>
-cat: show the content of a file<br/>
-more: see the content of a file and support page turning</p>
+</span></span></code></pre></div><h3 id="touch--cat--more" class="relative group">touch &amp; cat &amp; more <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#touch--cat--more" aria-label="Anchor">#</a></span></h3><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>touch</strong>: create a new file<br/>
+<strong>cat</strong>: show the content of a file<br/>
+<strong>more</strong>: see the content of a file and support page turning</span>
+</div>
+
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">touch [bob/]test.txt
 </span></span><span class="line"><span class="cl">cat [bob/]test.txt
 </span></span><span class="line"><span class="cl">more [bob/]test.txt
 </span></span></code></pre></div><h3 id="cp--rm--mv" class="relative group">cp &amp; rm &amp; mv <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#cp--rm--mv" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">cp [-r] old_file new_file	# choose -r when copying a folder
-</span></span><span class="line"><span class="cl">rm [-r -f] file1 file2...	# choose -f when deleting files or choose -r when deleting folders
+</span></span><span class="line"><span class="cl">rm [-r -f] file1 file2...	# -f means force delete, -r means deleting folders
 </span></span><span class="line"><span class="cl">mv old_path new_path
-</span></span></code></pre></div><p>cp: copy a file or folder<br/>
-mv: move a file or folder to a new path
-rm: delete files or folders</p>
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>cp</strong>: copy a file or folder<br/>
+<strong>mv</strong>: move a file or folder to a new path<br/>
+<strong>rm</strong>: delete files or folders (use a &lsquo;<strong>*</strong>&rsquo; to achieve fuzzy matching)</span>
+</div>
+
 <h2 id="3-mysql-project" class="relative group">3. MySQL Project <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-mysql-project" aria-label="Anchor">#</a></span></h2><p>As a passionate blogger, the choice of platform and theme is crucial in shaping the reader experience and managing content efficiently. After evaluating several platforms and themes, I settled on Hugo with the Congo theme. Here&rsquo; s why:</p>
 <h3 id="the-power-of-hugo-speed-and-flexibility-combined" class="relative group">The Power of Hugo: Speed and Flexibility Combined <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-power-of-hugo-speed-and-flexibility-combined" aria-label="Anchor">#</a></span></h3><blockquote>
 <p>Hugo: The World’s Fastest Framework for Building Websites</p>
@@ -1163,10 +1189,10 @@ Call to action
 </span></span></code></pre></div><!-- prettier-ignore-start -->
 <div class="chart">
   
-  <canvas id="639815427"></canvas>
+  <canvas id="241356789"></canvas>
   <script type="text/javascript">
     window.addEventListener("DOMContentLoaded", (event) => {
-      const ctx = document.getElementById("639815427");
+      const ctx = document.getElementById("241356789");
       const chart = new Chart(ctx, {
         
 type: 'bar',
