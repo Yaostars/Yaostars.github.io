@@ -93,20 +93,4 @@
           </url>
     
   
-    
-      <url>
-            <loc>https://yaostars.github.io/zh-cn/study/</loc>
-            <xhtml:link
-              rel="alternate"
-              hreflang="en"
-              href="https://yaostars.github.io/study/"
-              />
-            <xhtml:link
-              rel="alternate"
-              hreflang="zh-cn"
-              href="https://yaostars.github.io/zh-cn/study/"
-              />
-          </url>
-    
-  
 </urlset>

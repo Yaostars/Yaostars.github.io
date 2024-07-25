@@ -6,6 +6,41 @@
   
     
       <url>
+            <loc>https://yaostars.github.io/study/linux/</loc>
+            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://yaostars.github.io/study/</loc>
+            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
+          </url>
+    
+  
+    
+  
+    
+      <url>
+            <loc>https://yaostars.github.io/</loc>
+            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
+            <xhtml:link
+              rel="alternate"
+              hreflang="zh-cn"
+              href="https://yaostars.github.io/zh-cn/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="https://yaostars.github.io/"
+              />
+          </url>
+    
+  
+    
+  
+    
+      <url>
             <loc>https://yaostars.github.io/research/setup-guides/</loc>
             <lastmod>2024-05-28T14:00:00+08:00</lastmod>
             <xhtml:link
@@ -43,25 +78,6 @@
     
   
     
-      <url>
-            <loc>https://yaostars.github.io/</loc>
-            <lastmod>2024-05-28T14:00:00+08:00</lastmod>
-            <xhtml:link
-              rel="alternate"
-              hreflang="zh-cn"
-              href="https://yaostars.github.io/zh-cn/"
-              />
-            <xhtml:link
-              rel="alternate"
-              hreflang="en"
-              href="https://yaostars.github.io/"
-              />
-          </url>
-    
-  
-    
-  
-    
   
     
   
@@ -71,12 +87,6 @@
       <url>
             <loc>https://yaostars.github.io/research/features/</loc>
             <lastmod>2024-05-28T08:00:00+08:00</lastmod>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://yaostars.github.io/study/linux/</loc>
           </url>
     
   
@@ -110,22 +120,6 @@
               rel="alternate"
               hreflang="en"
               href="https://yaostars.github.io/life/"
-              />
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://yaostars.github.io/study/</loc>
-            <xhtml:link
-              rel="alternate"
-              hreflang="zh-cn"
-              href="https://yaostars.github.io/zh-cn/study/"
-              />
-            <xhtml:link
-              rel="alternate"
-              hreflang="en"
-              href="https://yaostars.github.io/study/"
               />
           </url>
     
