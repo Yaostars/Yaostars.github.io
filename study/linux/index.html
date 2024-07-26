@@ -140,7 +140,7 @@
     "keywords": ["Linux"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "282"
+    "wordCount": "805"
   }
   </script>
 
@@ -153,7 +153,7 @@
     
       <link href="https://github.com/Yaostars" rel="me" />
     
-      <link href="https://linkedin.com/in/username" rel="me" />
+      <link href="https://www.linkedin.com/in/%E6%98%95%E6%88%90-%E5%A7%9A-1a328b219/" rel="me" />
     
   
   
@@ -532,7 +532,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-24 08:00:00 &#43;0800 CST">24 July 2024</time><span class="px-2 text-primary-500">&middot;</span><span>282 words</span><span class="px-2 text-primary-500">&middot;</span>
+      <time datetime="2024-07-24 08:00:00 &#43;0800 CST">24 July 2024</time><span class="px-2 text-primary-500">&middot;</span><span>805 words</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -657,6 +657,10 @@
         <li><a href="#cd--pwd--mkdir">cd &amp; pwd &amp; mkdir</a></li>
         <li><a href="#touch--cat--more">touch &amp; cat &amp; more</a></li>
         <li><a href="#cp--rm--mv">cp &amp; rm &amp; mv</a></li>
+        <li><a href="#which--find">which &amp; find</a></li>
+        <li><a href="#grep--wc">grep &amp; wc</a></li>
+        <li><a href="#echo--tail">echo &amp; tail</a></li>
+        <li><a href="#vi--vim">vi / vim</a></li>
       </ul>
     </li>
     <li><a href="#3-mysql-project">3. MySQL Project</a></li>
@@ -739,7 +743,7 @@
 
 </figure>
 
-System defaults to the &lsquo;home/&rsquo; directory.</p>
+System defaults to the &ldquo;home/&rdquo; directory.</p>
 <h2 id="2-orders-and-functions" class="relative group">2. Orders and Functions <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-orders-and-functions" aria-label="Anchor">#</a></span></h2><p>Linux orders often looks like:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">command [-options] [parameter]
 </span></span></code></pre></div><h3 id="ls" class="relative group">ls <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ls" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ls [-a -l -h] [path]
@@ -748,7 +752,7 @@ System defaults to the &lsquo;home/&rsquo; directory.</p>
     
   </span>
   <span class="dark:text-neutral-300"><strong>-a</strong>: show all (including hidden) files and folders<br/>
-<strong>-h</strong>: make information easier to read (often used together with &lsquo;-l&rsquo;)<br/>
+<strong>-h</strong>: make information easier to read (often used together with &ldquo;-l&rdquo;)<br/>
 <strong>-l</strong>: list detailed information about files and folders</span>
 </div>
 
@@ -777,7 +781,7 @@ System defaults to the &lsquo;home/&rsquo; directory.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">touch [bob/]test.txt
 </span></span><span class="line"><span class="cl">cat [bob/]test.txt
 </span></span><span class="line"><span class="cl">more [bob/]test.txt
-</span></span></code></pre></div><h3 id="cp--rm--mv" class="relative group">cp &amp; rm &amp; mv <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#cp--rm--mv" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">cp [-r] old_file new_file	# choose -r when copying a folder
+</span></span></code></pre></div><h3 id="cp--rm--mv" class="relative group">cp &amp; rm &amp; mv <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#cp--rm--mv" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">cp [-r] old_file new_file	# Choose -r when copying a folder
 </span></span><span class="line"><span class="cl">rm [-r -f] file1 file2...	# -f means force delete, -r means deleting folders
 </span></span><span class="line"><span class="cl">mv old_path new_path
 </span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
@@ -786,9 +790,155 @@ System defaults to the &lsquo;home/&rsquo; directory.</p>
   </span>
   <span class="dark:text-neutral-300"><strong>cp</strong>: copy a file or folder<br/>
 <strong>mv</strong>: move a file or folder to a new path<br/>
-<strong>rm</strong>: delete files or folders (use a &lsquo;<strong>*</strong>&rsquo; to achieve fuzzy matching)</span>
+<strong>rm</strong>: delete files or folders (use a wildcard &ldquo;<strong>*</strong>&rdquo; to achieve fuzzy matching)</span>
 </div>
 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">rm -f *.txt	# Delete all files ending in &#34;.txt&#34;
+</span></span></code></pre></div><h3 id="which--find" class="relative group">which &amp; find <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#which--find" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">which order_name
+</span></span><span class="line"><span class="cl">find begin_path -name &#34;file_name&#34;
+</span></span><span class="line"><span class="cl">find begin_path -size +|-n[kMG]	# &#34;+&#34; means larger, &#34;-&#34; means smaller, k/M/G are size units
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>which</strong>: find the path of order files<br/>
+<strong>find</strong>: find files or directories location, can be used together with wildcard &ldquo;<strong>*</strong>&rdquo;</span>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">find / -name test*	# find paths of all files and directories starting in &#34;test&#34; since the root directory
+</span></span><span class="line"><span class="cl">find / -size - 100M	# find paths of all files and directories smaller than 100M since the root directory
+</span></span></code></pre></div><h3 id="grep--wc" class="relative group">grep &amp; wc <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#grep--wc" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">grep [-n] keyword file_path	# choose &#34;-n&#34; when you want to see the the line number in the file where the keyword is located
+</span></span><span class="line"><span class="cl">wc [-c -m -l -w] file_path
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>grep</strong>: find the keyword location in the file, can be used in conjunction with other commands, connected by pipeline symbols &ldquo;<strong>|</strong>&rdquo; in between<br/>
+<strong>wc</strong>: count the number of lines, words, etc. in the file<br/>
+ <strong>-c</strong>: count number of bytes<br/>
+ <strong>-m</strong>: count number of characters<br/>
+ <strong>-l</strong>: count number of lines<br/>
+ <strong>-w</strong>: count number of words</span>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">cat test.txt | grep itheima | grep itcast	# find sentences containing &#34;itheima&#34; or &#34;itcast&#34; in test.txt
+</span></span><span class="line"><span class="cl">wc -c test.txt
+</span></span></code></pre></div><h3 id="echo--tail" class="relative group">echo &amp; tail <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#echo--tail" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">echo content
+</span></span><span class="line"><span class="cl">tail [-f -num] path	# choose &#34;-f&#34; when consistently follow a file, choose &#34;-num&#34; to point the number of last lines you want to see in the files (default with 10 lines)
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>echo</strong>: print content instantly (suggest enclosing the output content with double quotation marks), can be used together with &ldquo;<strong>&gt;</strong>&rdquo; or &ldquo;<strong>&gt;&gt;</strong>&rdquo; to write the output content to the file on the right. It can also be used with &ldquo;<strong>`</strong>&rdquo; to show the result of a command.<br/>
+ <strong>&gt;</strong>: overwrite<br/>
+ <strong>&gt;&gt;</strong>: add write<br/>
+<strong>tail</strong>: show the last lines in a file</span>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">echo <span class="sb">`pwd`</span> &gt;&gt; test.txt	# append the result of the &#34;pwd&#34; command to the test.txt
+</span></span><span class="line"><span class="cl">tail -f -20 test.txt	# continuously check the last 20 lines content of test.txt
+</span></span></code></pre></div><h3 id="vi--vim" class="relative group">vi / vim <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#vi--vim" aria-label="Anchor">#</a></span></h3><p>vim is an upgraded version of vi, which fully includes all the command methods of vi.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_330x0_resize_q75_h2_box_3.webp 330w,/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_660x0_resize_q75_h2_box_3.webp 660w
+            
+              
+                ,/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_787x531_resize_q75_h2_box_3.webp 787w
+              
+            
+            
+              
+                ,/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_787x531_resize_q75_h2_box_3.webp 787w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="787"
+        height="531"
+        class="mx-auto my-0 rounded-md"
+        alt="vim/vi_workmode"
+        loading="lazy" decoding="async"
+        
+          src="/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_660x0_resize_box_3.png"
+          srcset="/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_330x0_resize_box_3.png 330w,/study/linux/vim-vi_hu6949b1a79df09f81a132e8e65afd39ea_74556_660x0_resize_box_3.png 660w
+          
+            ,/study/linux/vim-vi.png 787w
+          
+          
+            ,/study/linux/vim-vi.png 787w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+<div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><p>In command mode:<br/>
+ <strong>i</strong>: enter input mode at the cursor position<br/>
+ <strong>a</strong>: enter input mode after the cursor position<br/>
+ <strong>I</strong>: enter input mode at beginning of the line that the cursor position<br/>
+ <strong>A</strong>: enter input mode at the end of the line that the cursor position<br/>
+ <strong>o</strong>: enter input mode at the next line of cursor position<br/>
+ <strong>O</strong>: enter input mode at the above line of cursor position<br/>
+ <strong>esc</strong>: back to command mode in any situation<br/>
+ <strong>[n]dd</strong>: delete n lines from cursor position<br/>
+ <strong>[n]yy</strong>: copy the n+1 lines from current line<br/>
+ <strong>p</strong>: paste<br/>
+ <strong>u</strong>: revoke<br/>
+ <strong>ctrl+r</strong>: reverse revoke<br/>
+ <strong>gg</strong>: cursor jump to the first line<br/>
+ <strong>G</strong>: cursor jump to the end of current line<br/>
+ <strong>dG</strong>: delete all from the current line<br/>
+ <strong>dgg</strong>: delete all above from the current line<br/>
+ <strong>d$</strong>: delete content till the end of current line<br/>
+ <strong>d0</strong>: delete content till the head of current line</p>
+<p>In baseline command mode:<br/>
+ <strong>:wq</strong>: save and quit<br/>
+ <strong>:q</strong>: quit without save<br/>
+ <strong>:q!</strong>: forced quit<br/>
+ <strong>:w</strong>: save<br/>
+ <strong>:set nu</strong>: show the number of current line<br/>
+ <strong>:set paste</strong>: set the paste mode</p>
+</span>
+</div>
+</p>
 <h2 id="3-mysql-project" class="relative group">3. MySQL Project <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-mysql-project" aria-label="Anchor">#</a></span></h2>
       </div>
     </section>

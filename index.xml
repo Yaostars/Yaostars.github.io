@@ -16,19 +16,5 @@
       <guid>https://yaostars.github.io/study/linux/</guid>
       <description>By following &lt;a href=&#34;https://www.itheima.com/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Itheima&lt;/a&gt;, I&amp;rsquo;m learning some knowledge and basic orders about Linux. This article is only used for me to recall knowledge. If there are something hard to understand, please forgive me.</description>
     </item>
-    <item>
-      <title>How to Launch the Blog: Running, Configuration, and Deployment Guide</title>
-      <link>https://yaostars.github.io/research/setup-guides/</link>
-      <pubDate>Tue, 28 May 2024 14:00:00 +0800</pubDate>
-      <guid>https://yaostars.github.io/research/setup-guides/</guid>
-      <description>Learn how to start a blog from scratch with this step-by-step guide on running, configuring, and deploying Hugo blogging platform.</description>
-    </item>
-    <item>
-      <title>Welcome to My New Blog: Powered by Hugo and Styled with Congo</title>
-      <link>https://yaostars.github.io/research/features/</link>
-      <pubDate>Tue, 28 May 2024 08:00:00 +0800</pubDate>
-      <guid>https://yaostars.github.io/research/features/</guid>
-      <description>Explore the unique features of my blog powered by Hugo, the benefits of the Congo theme based on Tailwind CSS 3, and the versatility of Markdown functionalities, including Hugo&amp;rsquo;s shortcodes.</description>
-    </item>
   </channel>
 </rss>
