@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on Ystars</title>
+    <link>https://yaostars.github.io/zh-cn/tags/ai/</link>
+    <description>Recent content in AI on Ystars</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2024 [姚昕成](https://github.com/Yaostars)</copyright>
+    <lastBuildDate>Fri, 26 Jul 2024 08:00:00 +0800</lastBuildDate>
+    <atom:link href="https://yaostars.github.io/zh-cn/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pytorch学习笔记</title>
+      <link>https://yaostars.github.io/zh-cn/study/pytorch/</link>
+      <pubDate>Fri, 26 Jul 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/zh-cn/study/pytorch/</guid>
+      <description>最近在学习Pytorch，以此记录下我所学习的一些语法。</description>
+    </item>
+    <item>
+      <title>机器学习</title>
+      <link>https://yaostars.github.io/zh-cn/study/nn/</link>
+      <pubDate>Fri, 26 Jul 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/zh-cn/study/nn/</guid>
+      <description>理论知识来源于周志华《机器学习》，我将在此页记录下我认为重要的知识点。</description>
+    </item>
+  </channel>
+</rss>

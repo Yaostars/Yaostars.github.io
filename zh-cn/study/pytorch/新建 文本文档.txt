@@ -1,0 +1,10 @@
++++
+title = "Pytorch Notes"
+date = 2024-07-26T08:00:00+08:00
+draft = false
+description = "This article is written to help me remember some grammar in Pytorch."
+summary = "This article is written for my pytorch learning and some practical technique of ML."
+tags = ['Pytorch', 'AI']
+showWordCount = true
+showEdit = true
++++

@@ -6,15 +6,56 @@
   
     
       <url>
-            <loc>https://yaostars.github.io/study/linux/</loc>
-            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
+            <loc>https://yaostars.github.io/study/nn/</loc>
+            <lastmod>2024-07-26T08:00:00+08:00</lastmod>
+            <xhtml:link
+              rel="alternate"
+              hreflang="zh-cn"
+              href="https://yaostars.github.io/zh-cn/study/nn/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="https://yaostars.github.io/study/nn/"
+              />
+          </url>
+    
+  
+    
+  
+    
+  
+    
+      <url>
+            <loc>https://yaostars.github.io/study/pytorch/</loc>
+            <lastmod>2024-07-26T08:00:00+08:00</lastmod>
+            <xhtml:link
+              rel="alternate"
+              hreflang="zh-cn"
+              href="https://yaostars.github.io/zh-cn/study/pytorch/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="https://yaostars.github.io/study/pytorch/"
+              />
           </url>
     
   
     
       <url>
             <loc>https://yaostars.github.io/study/</loc>
-            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
+            <lastmod>2024-07-26T08:00:00+08:00</lastmod>
+            <xhtml:link
+              rel="alternate"
+              hreflang="zh-cn"
+              href="https://yaostars.github.io/zh-cn/study/"
+              />
+            <xhtml:link
+              rel="alternate"
+              hreflang="en"
+              href="https://yaostars.github.io/study/"
+              />
           </url>
     
   
@@ -23,7 +64,7 @@
     
       <url>
             <loc>https://yaostars.github.io/</loc>
-            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
+            <lastmod>2024-07-26T08:00:00+08:00</lastmod>
             <xhtml:link
               rel="alternate"
               hreflang="zh-cn"
@@ -34,6 +75,15 @@
               hreflang="en"
               href="https://yaostars.github.io/"
               />
+          </url>
+    
+  
+    
+  
+    
+      <url>
+            <loc>https://yaostars.github.io/study/linux/</loc>
+            <lastmod>2024-07-24T08:00:00+08:00</lastmod>
           </url>
     
   

@@ -7,8 +7,22 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 [Xincheng Yao](https://github.com/Yaostars)</copyright>
-    <lastBuildDate>Wed, 24 Jul 2024 08:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jul 2024 08:00:00 +0800</lastBuildDate>
     <atom:link href="https://yaostars.github.io/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Machine Learning</title>
+      <link>https://yaostars.github.io/study/nn/</link>
+      <pubDate>Fri, 26 Jul 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/study/nn/</guid>
+      <description>All knowledge is based on the &lt;em&gt;Machine Learning&lt;/em&gt; written by Zhihua Zhou. I just record what I think important in this page.</description>
+    </item>
+    <item>
+      <title>Pytorch Notes</title>
+      <link>https://yaostars.github.io/study/pytorch/</link>
+      <pubDate>Fri, 26 Jul 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/study/pytorch/</guid>
+      <description>This article is written for my pytorch learning and some practical technique of ML.</description>
+    </item>
     <item>
       <title>Linux Notes</title>
       <link>https://yaostars.github.io/study/linux/</link>

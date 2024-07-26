@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on Ystars</title>
+    <link>https://yaostars.github.io/tags/ai/</link>
+    <description>Recent content in AI on Ystars</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2024 [Xincheng Yao](https://github.com/Yaostars)</copyright>
+    <lastBuildDate>Fri, 26 Jul 2024 08:00:00 +0800</lastBuildDate>
+    <atom:link href="https://yaostars.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Machine Learning</title>
+      <link>https://yaostars.github.io/study/nn/</link>
+      <pubDate>Fri, 26 Jul 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/study/nn/</guid>
+      <description>All knowledge is based on the &lt;em&gt;Machine Learning&lt;/em&gt; written by Zhihua Zhou. I just record what I think important in this page.</description>
+    </item>
+    <item>
+      <title>Pytorch Notes</title>
+      <link>https://yaostars.github.io/study/pytorch/</link>
+      <pubDate>Fri, 26 Jul 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/study/pytorch/</guid>
+      <description>This article is written for my pytorch learning and some practical technique of ML.</description>
+    </item>
+  </channel>
+</rss>
