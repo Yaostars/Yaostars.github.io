@@ -17,8 +17,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Linux Notes &middot; Ystars</title>
-    <meta name="title" content="Linux Notes &middot; Ystars" />
+  <title>Linux &middot; Ystars</title>
+    <meta name="title" content="Linux &middot; Ystars" />
   
   
   
@@ -36,14 +36,12 @@
   
   
   
-    
-  
   
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.312091a503e93a0a678bf93c11be31486411fb9905862020b66954c1ceb10990.css"
-    integrity="sha256-MSCRpQPpOgpni/k8Eb4xSGQR&#43;5kFhiAgtmlUwc6xCZA="
+    href="/css/main.bundle.min.8d03f49bff76158e114fdf6d18be3ad4d3b70309a01aebb97468ef8fd8d3b50a.css"
+    integrity="sha256-jQP0m/92FY4RT99tGL461NO3AwmgGuu5dGjvj9jTtQo="
   />
   
     
@@ -99,7 +97,7 @@
   
   <meta property="og:url" content="https://yaostars.github.io/study/linux/">
   <meta property="og:site_name" content="Ystars">
-  <meta property="og:title" content="Linux Notes">
+  <meta property="og:title" content="Linux">
   <meta property="og:description" content="This article is written to record my study experience and some knowledge in Linux.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -112,7 +110,7 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://yaostars.github.io/study/linux/cover.jpg">
-  <meta name="twitter:title" content="Linux Notes">
+  <meta name="twitter:title" content="Linux">
   <meta name="twitter:description" content="This article is written to record my study experience and some knowledge in Linux.">
 
   
@@ -121,8 +119,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Studies",
-    "name": "Linux Notes",
-    "headline": "Linux Notes",
+    "name": "Linux",
+    "headline": "Linux",
     "description": "This article is written to record my study experience and some knowledge in Linux.",
     "abstract": "By following \u003ca href=\u0022https:\/\/www.itheima.com\/\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003eItheima\u003c\/a\u003e, I\u0026rsquo;m learning some knowledge and basic orders about Linux. This article is only used for me to recall knowledge. If there are something hard to understand, please forgive me.",
     "inLanguage": "en",
@@ -140,7 +138,7 @@
     "keywords": ["Linux"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "805"
+    "wordCount": "1442"
   }
   </script>
 
@@ -485,7 +483,7 @@
     <a
       class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
       href="/study/linux/"
-      >Linux Notes</a
+      >Linux</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -494,7 +492,7 @@
 
       
       <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        Linux Notes
+        Linux
       </h1>
       
         <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -532,7 +530,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-24 08:00:00 &#43;0800 CST">24 July 2024</time><span class="px-2 text-primary-500">&middot;</span><span>805 words</span><span class="px-2 text-primary-500">&middot;</span>
+      <time datetime="2024-07-24 08:00:00 &#43;0800 CST">24 July 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1442 words</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -649,6 +647,11 @@
         <li><a href="#wsl">WSL</a></li>
         <li><a href="#snapshot">Snapshot</a></li>
         <li><a href="#directory-structure">Directory Structure</a></li>
+        <li><a href="#user--user-groups">User &amp; User Groups</a></li>
+        <li><a href="#shortcut-keys">Shortcut Keys</a></li>
+        <li><a href="#dns-resolution--fixed-ip-config">DNS Resolution &amp; Fixed IP Config</a></li>
+        <li><a href="#environment-variable-config">Environment Variable Config</a></li>
+        <li><a href="#compression-and-decompression">Compression and Decompression</a></li>
       </ul>
     </li>
     <li><a href="#2-orders-and-functions">2. Orders and Functions</a>
@@ -661,6 +664,17 @@
         <li><a href="#grep--wc">grep &amp; wc</a></li>
         <li><a href="#echo--tail">echo &amp; tail</a></li>
         <li><a href="#vi--vim">vi / vim</a></li>
+        <li><a href="#su--sudo">su &amp; sudo</a></li>
+        <li><a href="#chmod--chown">chmod &amp; chown</a></li>
+        <li><a href="#yum--apt">yum &amp; apt</a></li>
+        <li><a href="#systemctl">systemctl</a></li>
+        <li><a href="#ln">ln</a></li>
+        <li><a href="#ifconfig--hostname--hostnamectl">ifconfig &amp; hostname &amp; hostnamectl</a></li>
+        <li><a href="#ping--wget--curl">ping &amp; wget &amp; curl</a></li>
+        <li><a href="#nmap--netstat">nmap &amp; netstat</a></li>
+        <li><a href="#ps--kill">ps &amp; kill</a></li>
+        <li><a href="#top--df--iostat--sar">top &amp; df &amp; iostat &amp; sar</a></li>
+        <li><a href="#rz--sz">rz &amp; sz</a></li>
       </ul>
     </li>
     <li><a href="#3-mysql-project">3. MySQL Project</a></li>
@@ -750,6 +764,23 @@
 </figure>
 
 System defaults to the &ldquo;home/&rdquo; directory.</p>
+<h3 id="user--user-groups" class="relative group">User &amp; User Groups <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#user--user-groups" aria-label="Anchor">#</a></span></h3><p><a href="https://www.bilibili.com/video/BV1n84y1i7td/?p=25&amp;share_source=copy_web&amp;vd_source=981f0561b8f4cc85637fb5cae9d856cf" target="_blank" rel="noreferrer">Details</a></p>
+<h3 id="shortcut-keys" class="relative group">Shortcut Keys <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#shortcut-keys" aria-label="Anchor">#</a></span></h3><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>ctrl+d</strong>: log out<br/>
+<strong>ctrl+c</strong>: stop<br/>
+<strong>history</strong>: show historical commands<br/>
+<strong>!</strong>: command prefix, match the previous command<br/>
+<strong>ctrl+r</strong>: search the history commands<br/>
+<strong>ctrl+l</strong>: clear screen</span>
+</div>
+
+<h3 id="dns-resolution--fixed-ip-config" class="relative group">DNS Resolution &amp; Fixed IP Config <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dns-resolution--fixed-ip-config" aria-label="Anchor">#</a></span></h3><p><a href="https://www.bilibili.com/video/BV1n84y1i7td/?p=34&amp;share_source=copy_web&amp;vd_source=981f0561b8f4cc85637fb5cae9d856cf" target="_blank" rel="noreferrer">Details</a></p>
+<h3 id="environment-variable-config" class="relative group">Environment Variable Config <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#environment-variable-config" aria-label="Anchor">#</a></span></h3><p><a href="https://www.bilibili.com/video/BV1n84y1i7td/?p=40&amp;share_source=copy_web&amp;vd_source=981f0561b8f4cc85637fb5cae9d856cf" target="_blank" rel="noreferrer">Details</a>
+(<strong>$</strong> means get value of a variable)</p>
+<h3 id="compression-and-decompression" class="relative group">Compression and Decompression <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#compression-and-decompression" aria-label="Anchor">#</a></span></h3><p>Linux has two common compressed file format, which is &ldquo;.tar&rdquo; and &ldquo;.gz&rdquo;. The compression and depression methods of them is <a href="https://www.bilibili.com/video/BV1n84y1i7td/?p=42&amp;share_source=copy_web&amp;vd_source=981f0561b8f4cc85637fb5cae9d856cf" target="_blank" rel="noreferrer">here</a>.</p>
 <h2 id="2-orders-and-functions" class="relative group">2. Orders and Functions <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-orders-and-functions" aria-label="Anchor">#</a></span></h2><p>Linux orders often looks like:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">command [-options] [parameter]
 </span></span></code></pre></div><h3 id="ls" class="relative group">ls <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ls" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ls [-a -l -h] [path]
@@ -945,6 +976,137 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
 </span>
 </div>
 </p>
+<h3 id="su--sudo" class="relative group">su &amp; sudo <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#su--sudo" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">su - [username]	# default as root
+</span></span><span class="line"><span class="cl">sudo command
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>su</strong>: switch to a user<br/>
+<strong>sudo</strong>: temporarily execute command instructions as root user</span>
+</div>
+
+<h3 id="chmod--chown" class="relative group">chmod &amp; chown <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#chmod--chown" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">chmod [-R] authority path	# choose &#34;-R&#34; to authorize all files in the directory
+</span></span><span class="line"><span class="cl">chown [-R] [user][:][group] [path]
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>chmod</strong>: authorize files or folders, authority can be:<br/>
+ <strong>r</strong>: read<br/>
+ <strong>w</strong>: write<br/>
+ <strong>x</strong>: executable<br/>
+<strong>chown</strong>: modify the user or user group to which a file or folder belongs</span>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">chmod u=rwx,g=rx,o=x hello.txt	# &#34;u&#34; means current user, &#34;g&#34; means group, &#34;o&#34; means other users
+</span></span><span class="line"><span class="cl">sudo chown root test.txt	# when &#34;root&#34; used to be or will be the user of the file, command need to be carried under root or sudo
+</span></span></code></pre></div><h3 id="yum--apt" class="relative group">yum &amp; apt <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#yum--apt" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">yum [-y] [install | remove | search] software_name	# choose &#34;-y&#34; to automatically confirm
+</span></span><span class="line"><span class="cl">apt [-y] [install | remove | search] software_name
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>yum</strong>: install or remove or search softwares or commands for CentOS (need root authority and network)<br/>
+<strong>apt</strong>: &ldquo;apt&rdquo; has the same function with &ldquo;yum&rdquo;, while it is for Ubuntu system</span>
+</div>
+
+<h3 id="systemctl" class="relative group">systemctl <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#systemctl" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">systemctl start | stop | status | enable | disable service_name
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>systemctl</strong>: view or operate system status, &ldquo;service_name&rdquo; can be:<br/>
+ <strong>NetworkManager</strong>: main network service<br/>
+ <strong>network</strong>: deputy network service<br/>
+ <strong>firewalld</strong>: firewall service<br/>
+ <strong>sshd</strong>: ssh service</span>
+</div>
+
+<h3 id="ln" class="relative group">ln <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ln" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ln -s parameter1 parameter2	# parameter1: original file, parameter2: link destination
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>ln</strong>: create a link, &ldquo;-s&rdquo; means soft link</span>
+</div>
+
+<h3 id="ifconfig--hostname--hostnamectl" class="relative group">ifconfig &amp; hostname &amp; hostnamectl <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ifconfig--hostname--hostnamectl" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ifconfig
+</span></span><span class="line"><span class="cl">hostname
+</span></span><span class="line"><span class="cl">hostnamectl set-hostname centos	# set the hostname as centos
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>ifconfig</strong>: show the IP address of the host<br/>
+<strong>hostname</strong>: show host name<br/>
+<strong>hostnamectl</strong>: config host name (need root authority)</span>
+</div>
+
+<h3 id="ping--wget--curl" class="relative group">ping &amp; wget &amp; curl <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ping--wget--curl" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ping [-c num] ip_or_hostname	# &#34;-c&#34; means check times, default countless times
+</span></span><span class="line"><span class="cl">wget [-b] url	# choose &#34;-b&#34; to download in background
+</span></span><span class="line"><span class="cl">curl [-O] url	# choose &#34;-O&#34; when downloading
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>ping</strong>: network check<br/>
+<strong>wget</strong>: download files<br/>
+<strong>curl</strong>: launch a network request (also can download files when choosing &ldquo;-O&rdquo;)</span>
+</div>
+
+<h3 id="nmap--netstat" class="relative group">nmap &amp; netstat <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#nmap--netstat" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">nmap IP_address
+</span></span><span class="line"><span class="cl">netstat -anp | grep port_number
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>nmap</strong>: check the usage status of the host port corresponding to the IP address<br/>
+<strong>netstat</strong>: view a port usage status</span>
+</div>
+
+<h3 id="ps--kill" class="relative group">ps &amp; kill <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ps--kill" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ps [-e -f]	# choose &#34;-e&#34; to see all process, choose &#34;-f&#34; to see all information
+</span></span><span class="line"><span class="cl">kill [-9] PID	# &#34;-9&#34; means forced kill
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>ps</strong>: see the process information in Linux, can be used together with &ldquo;grep&rdquo;<br/>
+<strong>kill</strong>: kill process</span>
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">ps -ef | grep tail	# find all information of all process about &#34;tail&#34;
+</span></span></code></pre></div><h3 id="top--df--iostat--sar" class="relative group">top &amp; df &amp; iostat &amp; sar <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#top--df--iostat--sar" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">top [-p -d -c -n -b -i -u] parameter
+</span></span><span class="line"><span class="cl">df [-h]	# choose &#34;-h&#34; to display more humanely
+</span></span><span class="line"><span class="cl">iostat [-x] [num1] [num2]	# choose &#34;-x&#34; to show more information, &#34;num1&#34; means fresh interval, &#34;num2&#34; means fresh times
+</span></span><span class="line"><span class="cl">sar -n DEV num1 num2	# &#34;-n&#34; means check network, &#34;DEV&#34; means view network interface, &#34;num1&#34; and &#34;num2&#34; has the same meaning above
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>top</strong>: monitor system resources<br/>
+ <strong>-p</strong>: only show a process information<br/>
+ <strong>-d</strong>: set fresh time, default as 5 seconds<br/>
+ <strong>-c</strong>: set the whole command that created the process<br/>
+ <strong>-n</strong>: point the fresh times<br/>
+ <strong>-b</strong>: execute &ldquo;top&rdquo; in batches, often be used together with &ldquo;-n&rdquo; and &ldquo;&gt;&quot;<br/>
+ <strong>-i</strong>: do not display any useless or idle processes<br/>
+ <strong>-u</strong>: search for processes initiated by a specific user<br/>
+<strong>df</strong>: view disk usage<br/>
+<strong>iostat</strong>: view cpu and disk information<br/>
+<strong>sar</strong>: view network status</span>
+</div>
+
+<h3 id="rz--sz" class="relative group">rz &amp; sz <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#rz--sz" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">rz
+</span></span><span class="line"><span class="cl">sz file_name
+</span></span></code></pre></div><div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    
+  </span>
+  <span class="dark:text-neutral-300"><strong>rz</strong>: upload files to virtual machine<br/>
+<strong>sz</strong>: download files from virtual machine</span>
+</div>
+
 <h2 id="3-mysql-project" class="relative group">3. MySQL Project <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-mysql-project" aria-label="Anchor">#</a></span></h2>
       </div>
     </section>
@@ -958,7 +1120,7 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=https://yaostars.github.io/study/linux/&amp;quote=Linux%20Notes"
+          href="https://www.facebook.com/sharer/sharer.php?u=https://yaostars.github.io/study/linux/&amp;quote=Linux"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           target="_blank"
@@ -971,7 +1133,7 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://x.com/intent/tweet/?url=https://yaostars.github.io/study/linux/&amp;text=Linux%20Notes"
+          href="https://x.com/intent/tweet/?url=https://yaostars.github.io/study/linux/&amp;text=Linux"
           title="Post on X"
           aria-label="Post on X"
           target="_blank"
@@ -984,7 +1146,7 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://yaostars.github.io/study/linux/&amp;title=Linux%20Notes"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://yaostars.github.io/study/linux/&amp;title=Linux"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           target="_blank"
@@ -997,7 +1159,7 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=https://yaostars.github.io/study/linux/&amp;subject=Linux%20Notes"
+          href="mailto:?body=https://yaostars.github.io/study/linux/&amp;subject=Linux"
           title="Send via email"
           aria-label="Send via email"
           target="_blank"
@@ -1010,7 +1172,7 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://telegram.me/share/url?text=https://yaostars.github.io/study/linux/&amp;url=Linux%20Notes"
+          href="https://telegram.me/share/url?text=https://yaostars.github.io/study/linux/&amp;url=Linux"
           title="Share on Telegram"
           aria-label="Share on Telegram"
           target="_blank"
@@ -1023,7 +1185,7 @@ System defaults to the &ldquo;home/&rdquo; directory.</p>
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://service.weibo.com/share/share.php?url=https://yaostars.github.io/study/linux/&amp;appkey=&amp;title=Linux%20Notes&amp;pic=&amp;ralateUid=&amp;lang"
+          href="https://service.weibo.com/share/share.php?url=https://yaostars.github.io/study/linux/&amp;appkey=&amp;title=Linux&amp;pic=&amp;ralateUid=&amp;lang"
           title="Share on Weibo"
           aria-label="Share on Weibo"
           target="_blank"
