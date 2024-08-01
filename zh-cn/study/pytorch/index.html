@@ -139,7 +139,7 @@
     "keywords": ["Pytorch","AI"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "541"
+    "wordCount": "546"
   }
   </script>
 
@@ -161,6 +161,152 @@
 
 
 
+
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/lib/katex/katex.min.5cc585eee579806fa7c1ea4d3cb915eb00e206013697950334c3a13f385bc441e531ee5aed3e688179cfae581a0801b26e817b8b70037bd5b248222f95843c9b.css"
+    integrity="sha512-XMWF7uV5gG&#43;nwepNPLkV6wDiBgE2l5UDNMOhPzhbxEHlMe5a7T5ogXnPrlgaCAGyboF7i3ADe9WySCIvlYQ8mw=="
+  />
+  
+  
+  <script
+    defer
+    src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js"
+    integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4&#43;aQiLo9/uaQqckDpdJ8Zm3M0QBs&#43;Pktg4pz0kEklUg=="
+  ></script>
+  
+  
+  <script
+    defer
+    src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js"
+    integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF&#43;NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w=="
+    onload="renderMathInElement(document.body);"
+  ></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
 
 
   
@@ -687,7 +833,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>541 字</span><span class="px-2 text-primary-500">&middot;</span>
+      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>546 字</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -800,9 +946,10 @@
         <li><a href="#12-数据预处理">1.2 数据预处理</a></li>
       </ul>
     </li>
-    <li><a href="#2-矩阵计算">2 矩阵计算</a>
+    <li><a href="#2-线性代数">2 线性代数</a>
       <ul>
-        <li><a href="#21-梯度">2.1 梯度</a></li>
+        <li><a href="#21-矩阵计算">2.1 矩阵计算</a></li>
+        <li><a href="#22-梯度">2.2 梯度</a></li>
       </ul>
     </li>
   </ul>
@@ -983,7 +1130,10 @@ id(Z):  1932872841072
 2       4.0        True         False       False
 3       3.0        True         False       False
 </code></pre>
-<h2 id="2-矩阵计算" class="relative group">2 矩阵计算 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-%e7%9f%a9%e9%98%b5%e8%ae%a1%e7%ae%97" aria-label="锚点">#</a></span></h2><h3 id="21-梯度" class="relative group">2.1 梯度 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#21-%e6%a2%af%e5%ba%a6" aria-label="锚点">#</a></span></h3><p>对于$\frac{\partial y }{\partial x}$，我们可以对y和x分别分标量和矢量情况来讨论。</p>
+<h2 id="2-线性代数" class="relative group">2 线性代数 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-%e7%ba%bf%e6%80%a7%e4%bb%a3%e6%95%b0" aria-label="锚点">#</a></span></h2><h3 id="21-矩阵计算" class="relative group">2.1 矩阵计算 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#21-%e7%9f%a9%e9%98%b5%e8%ae%a1%e7%ae%97" aria-label="锚点">#</a></span></h3><h3 id="22-梯度" class="relative group">2.2 梯度 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#22-%e6%a2%af%e5%ba%a6" aria-label="锚点">#</a></span></h3><p>
+
+对于\(\frac{\partial y}{\partial x}\) ，我们可以对y和x分别分标量和矢量情况来讨论。</p>
+<p>(1) <strong>y</strong>为矢量，x为标量</p>
 
       </div>
     </section>
