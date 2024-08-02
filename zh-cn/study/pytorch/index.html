@@ -139,7 +139,7 @@
     "keywords": ["Pytorch","AI"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "546"
+    "wordCount": "889"
   }
   </script>
 
@@ -833,7 +833,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>546 字</span><span class="px-2 text-primary-500">&middot;</span>
+      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>889 字</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1130,10 +1130,197 @@ id(Z):  1932872841072
 2       4.0        True         False       False
 3       3.0        True         False       False
 </code></pre>
-<h2 id="2-线性代数" class="relative group">2 线性代数 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-%e7%ba%bf%e6%80%a7%e4%bb%a3%e6%95%b0" aria-label="锚点">#</a></span></h2><h3 id="21-矩阵计算" class="relative group">2.1 矩阵计算 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#21-%e7%9f%a9%e9%98%b5%e8%ae%a1%e7%ae%97" aria-label="锚点">#</a></span></h3><h3 id="22-梯度" class="relative group">2.2 梯度 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#22-%e6%a2%af%e5%ba%a6" aria-label="锚点">#</a></span></h3><p>
+<h2 id="2-线性代数" class="relative group">2 线性代数 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-%e7%ba%bf%e6%80%a7%e4%bb%a3%e6%95%b0" aria-label="锚点">#</a></span></h2><h3 id="21-矩阵计算" class="relative group">2.1 矩阵计算 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#21-%e7%9f%a9%e9%98%b5%e8%ae%a1%e7%ae%97" aria-label="锚点">#</a></span></h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 矩阵操作</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">A</span>
+</span></span></code></pre></div><pre><code>tensor([[ 0.,  1.,  2.,  3.],
+        [ 4.,  5.,  6.,  7.],
+        [ 8.,  9., 10., 11.],
+        [12., 13., 14., 15.],
+        [16., 17., 18., 19.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A</span><span class="o">.</span><span class="n">T</span>
+</span></span></code></pre></div><pre><code>tensor([[ 0.,  4.,  8., 12., 16.],
+        [ 1.,  5.,  9., 13., 17.],
+        [ 2.,  6., 10., 14., 18.],
+        [ 3.,  7., 11., 15., 19.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>    <span class="c1"># dot为点乘函数</span>
+</span></span></code></pre></div><pre><code>(tensor([0., 1., 2., 3.]), tensor([1., 1., 1., 1.]), tensor(6.))
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>tensor(6.)
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">mv</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>    <span class="c1"># m表示matrix，v表示vector，mv就是矩阵乘向量</span>
+</span></span></code></pre></div><pre><code>(torch.Size([5, 4]), torch.Size([4]), tensor([ 14.,  38.,  62.,  86., 110.]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>    <span class="c1"># 同理，mm表示两个矩阵相乘</span>
+</span></span></code></pre></div><pre><code>tensor([[ 6.,  6.,  6.],
+        [22., 22., 22.],
+        [38., 38., 38.],
+        [54., 54., 54.],
+        [70., 70., 70.]])
+</code></pre>
+<p><strong>范数</strong></p>
+<p>
 
-对于\(\frac{\partial y}{\partial x}\) ，我们可以对y和x分别分标量和矢量情况来讨论。</p>
-<p>(1) <strong>y</strong>为矢量，x为标量</p>
+\(L_{2}\)范数就是向量平方根，可以用norm函数直接计算：</p>
+<p>$$
+\Vert X \Vert_{2} = \sqrt{\sum_{i=1}^n {x_{i}}^2}
+$$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">u</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>tensor(5.)
+</code></pre>
+<p>\(L_{1}\)范数则是向量元素绝对值之和：
+$$
+\Vert X \Vert_{1} = \sum_{i=1}^n {x_{i}}
+$$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span></span></code></pre></div><pre><code>tensor(7.)
+</code></pre>
+<p>矩阵最常见的就是佛罗贝尼乌斯范数，即矩阵元素的平方和的平方根：
+$$
+\Vert X \Vert_{F} = \sqrt{\sum_{i=1}^m \sum_{j=1}^n {x_{ij}}^2}
+$$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code>tensor(6.)
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 按轴求和</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></div><pre><code>torch.Size([2, 5, 4])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></div><pre><code>torch.Size([5])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># keepdims用来保存矩阵维度，即令被求和的维度以维度1保存在矩阵中，方便后续计算</span>
+</span></span></code></pre></div><pre><code>tensor([[[8.],
+         [8.],
+         [8.],
+         [8.],
+         [8.]]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></div><h3 id="22-梯度" class="relative group">2.2 梯度 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#22-%e6%a2%af%e5%ba%a6" aria-label="锚点">#</a></span></h3><p>对于\(\frac{\partial y}{\partial x}\) ，我们可以对y和x分别分标量和矢量情况来讨论。</p>
+<p>(1) <strong>x</strong>为矢量，y为标量（分母布局符号）</p>
+<p>设\(\textbf{x} = \begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 \\
+\end{bmatrix}\)，则\(\frac{\partial y}{\partial \textbf{x}} = \begin{bmatrix}
+\frac{\partial y}{\partial x_1} &amp;
+\frac{\partial y}{\partial x_2} &amp;
+\frac{\partial y}{\partial x_3} &amp;
+\frac{\partial y}{\partial x_4} &amp;
+\frac{\partial y}{\partial x_5}
+\end{bmatrix}\)</p>
+<p>(2) x为标量，<strong>y</strong>为矢量（分子布局符号）</p>
+<p>设\(\textbf{y} = \begin{bmatrix}
+y_1 \\
+y_2 \\
+y_3 \\
+&hellip; \\
+y_m \\
+\end{bmatrix}\)，则\(\frac{\partial \textbf{y}}{\partial x} = \begin{bmatrix}
+\frac{\partial y_1}{\partial x} \\
+\frac{\partial y_2}{\partial x} \\
+\frac{\partial y_3}{\partial x} \\
+&hellip; \\
+\frac{\partial y_m}{\partial x} \\
+\end{bmatrix}\)</p>
+<p>(3) <strong>x</strong>，<strong>y</strong>都为矢量</p>
+<p>设\(\textbf{x} = \begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+&hellip; \\
+x_n \\
+\end{bmatrix}\)，\(\textbf{y} = \begin{bmatrix}
+y_1 \\
+y_2 \\
+y_3 \\
+&hellip; \\
+y_m \\
+\end{bmatrix}\)，则
+\(\frac{\partial \textbf{y}}{\partial \textbf{x}} = \begin{bmatrix}
+\frac{\partial y_1}{\partial x_1} &amp; \frac{\partial y_1}{\partial x_2} &amp; &hellip; &amp; \frac{\partial y_1}{\partial x_n} \\
+\frac{\partial y_2}{\partial x_1} &amp; \frac{\partial y_2}{\partial x_2} &amp; &hellip; &amp; \frac{\partial y_2}{\partial x_n} \\
+&amp;&amp;&hellip; \\
+\frac{\partial y_m}{\partial x_1} &amp; \frac{\partial y_m}{\partial x_2} &amp; &hellip; &amp; \frac{\partial y_m}{\partial x_n} \\
+\end{bmatrix}\)</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_330x0_resize_q75_h2_box_3.webp 330w,/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_660x0_resize_q75_h2_box_3.webp 660w
+            
+              ,/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_1024x0_resize_q75_h2_box_3.webp 1024w
+            
+            
+              
+                ,/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_1246x628_resize_q75_h2_box_3.webp 1246w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1246"
+        height="628"
+        class="mx-auto my-0 rounded-md"
+        alt="image"
+        loading="lazy" decoding="async"
+        
+          src="/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_660x0_resize_box_3.png"
+          srcset="/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_330x0_resize_box_3.png 330w,/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_660x0_resize_box_3.png 660w
+          
+            ,/zh-cn/study/pytorch/matrix_calculation_hu053672c26d9ab3c169039b89e519d740_106647_1024x0_resize_box_3.png 1024w
+          
+          
+            ,/zh-cn/study/pytorch/matrix_calculation.png 1246w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
 
       </div>
     </section>
