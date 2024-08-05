@@ -139,7 +139,7 @@
     "keywords": ["Pytorch","AI"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "892"
+    "wordCount": "1049"
   }
   </script>
 
@@ -833,7 +833,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>892 字</span><span class="px-2 text-primary-500">&middot;</span>
+      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>1049 字</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1322,7 +1322,72 @@ y_m \\
 
 </figure>
 </p>
-<h3 id="23-自动求导" class="relative group">2.3 自动求导 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#23-%e8%87%aa%e5%8a%a8%e6%b1%82%e5%af%bc" aria-label="锚点">#</a></span></h3>
+<h3 id="23-自动求导" class="relative group">2.3 自动求导 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#23-%e8%87%aa%e5%8a%a8%e6%b1%82%e5%af%bc" aria-label="锚点">#</a></span></h3><p>Python的求导方式主要分为隐式和显式两种。Pytorch使用的为隐式构造，而Tensorflow使用的是显式构造。隐式构造通常更加方便且节约存储资源。</p>
+<p>下面第一个例子中展示的是\(y = 2 \textbf{x}^T \textbf{x}\)对\(\textbf{x}\)的求导过程。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span>
+</span></span></code></pre></div><pre><code>tensor([0., 1., 2., 3.])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># 表示需要存储计算出来的导数</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span>    <span class="c1"># 用来查看存储的导数值，默认为None</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>    <span class="c1"># dot表示点乘，这里表示x的转置乘x</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span>
+</span></span></code></pre></div><pre><code>tensor(28., grad_fn=&lt;MulBackward0&gt;)
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>    <span class="c1"># 调用反向传播函数来求导</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span>
+</span></span></code></pre></div><pre><code>tensor([ 0.,  4.,  8., 12.])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span>
+</span></span></code></pre></div><pre><code>tensor([True, True, True, True])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>    <span class="c1"># 清除之前计算的梯度</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span>
+</span></span></code></pre></div><pre><code>tensor([1., 1., 1., 1.])
+</code></pre>
+<p>深度学习中通常不直接让向量对向量求导，而是将向量转化为标量后再对向量求导，因为向量对向量求导需要在backward函数中引入一个gradient参数，该参数指定微分函数关于self的梯度。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>    <span class="c1"># 相当于y.backward(torch.ones(len(x)))。</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span>
+</span></span></code></pre></div><pre><code>tensor([0., 2., 4., 6.])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="n">u</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>    <span class="c1"># 表示将y的值赋给u，并且解除u和x之间的关系</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span> <span class="o">==</span> <span class="n">u</span>
+</span></span></code></pre></div><pre><code>tensor([True, True, True, True])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">grad</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+</span></span></code></pre></div><pre><code>tensor([True, True, True, True])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">b</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">*=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">=</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># size=()表示标量</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">.</span><span class="n">grad</span> <span class="o">==</span> <span class="n">d</span> <span class="o">/</span> <span class="n">a</span>
+</span></span></code></pre></div><pre><code>tensor(True)
+</code></pre>
+
       </div>
     </section>
     <footer class="max-w-prose pt-8 print:hidden">
