@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 [Xincheng Yao](https://github.com/Yaostars)</copyright>
-    <lastBuildDate>Fri, 26 Jul 2024 08:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 06 Aug 2024 08:00:00 +0800</lastBuildDate>
     <atom:link href="https://yaostars.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Summer Car Learning Daily</title>
+      <link>https://yaostars.github.io/life/24_summer/</link>
+      <pubDate>Tue, 06 Aug 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/life/24_summer/</guid>
+      <description>Driving, aha!</description>
+    </item>
     <item>
       <title>Machine Learning</title>
       <link>https://yaostars.github.io/study/nn/</link>
