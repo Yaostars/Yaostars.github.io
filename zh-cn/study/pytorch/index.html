@@ -139,7 +139,7 @@
     "keywords": ["Pytorch","AI"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "3494"
+    "wordCount": "4209"
   }
   </script>
 
@@ -831,7 +831,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>3494 字</span>
+      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>4209 字</span>
     
 
     
@@ -936,6 +936,7 @@
     <li><a href="#3-基础回归算法">3 基础回归算法</a>
       <ul>
         <li><a href="#31-线性回归">3.1 线性回归</a></li>
+        <li><a href="#32-softmax回归">3.2 Softmax回归</a></li>
       </ul>
     </li>
   </ul>
@@ -1567,7 +1568,12 @@ label:  tensor([0.8383])
 </span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">linreg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">squared_loss</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>    <span class="c1"># 均方损失</span>
+</span></span></code></pre></div><p>线性回归常使用均方损失函数来计算预测值与真实值的偏差，均方损失（L2 Loss）函数的公式为：
+$$
+l(y, y^{\prime}) = \frac 1 2 (y - y^{\prime})^2
+$$</p>
+<p>之所以有一个\(\frac 1 2\)，是为了方便求导。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">squared_loss</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>    <span class="c1"># 均方损失</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">y_hat</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_hat</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sgd</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>    <span class="c1"># 小批量随机梯度下降</span>
 </span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>    <span class="c1"># no_grad函数表示接下来不要记录计算的梯度</span>
@@ -1656,7 +1662,269 @@ b的估计误差：tensor([-0.0003], grad_fn=&lt;RsubBackward1&gt;)
 epoch 2, loss 0.000102
 epoch 3, loss 0.000101
 </code></pre>
+<h3 id="32-softmax回归" class="relative group">3.2 Softmax回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#32-softmax%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h3><p>分类和回归的区别：
 
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_330x0_resize_q75_h2_box_3.webp 330w,/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_660x0_resize_q75_h2_box_3.webp 660w
+            
+              ,/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_1024x0_resize_q75_h2_box_3.webp 1024w
+            
+            
+              
+                ,/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_1252x606_resize_q75_h2_box_3.webp 1252w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1252"
+        height="606"
+        class="mx-auto my-0 rounded-md"
+        alt="regression&amp;amp;classfication"
+        loading="lazy" decoding="async"
+        
+          src="/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_660x0_resize_box_3.png"
+          srcset="/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_330x0_resize_box_3.png 330w,/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_660x0_resize_box_3.png 660w
+          
+            ,/zh-cn/study/pytorch/regression_classification_hu2e9627352cd618709a913ce30c007653_148312_1024x0_resize_box_3.png 1024w
+          
+          
+            ,/zh-cn/study/pytorch/regression_classification.png 1252w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>Softmax回归本质上是一个多类分类模型，其计算公式如下：
+$$
+\hat{y_i} = \frac {exp(o_i)} {\sum_{k} exp(o_k)}
+$$</p>
+<p>Softmax函数常与交叉熵损失联用，后者用来衡量两个概率之间的区别，常用于二分类或多分类问题。交叉熵损失函数为：
+$$
+l(y, \hat{y}) = - \sum_{i} y_i log\hat{y_i} = -log\hat{y_y}
+$$
+故其梯度刚好是Softmax预测值与真实值的差值：
+$$
+\partial_{o_i}l(y, \hat{y}) = softmax(o)_i - y_i
+$$
+从而可以通过梯度下降法进行优化。</p>
+<p>除了交叉熵损失函数和均方损失函数，L1 Loss也是一经典的损失函数：
+$$
+l(y, y^{\prime}) = |y - y^{\prime}|
+$$</p>
+<p>L2函数适合于回归问题，但是当预测值于真实值较远时导数变化太大。L1函数虽然没有这个问题，但是在原点处不可导，因此当预测值与真实值接近时，变化不太稳定。结合以上二者的优势可以提出一个新的损失函数，如Huber&rsquo;s Robust Loss函数。
+$$
+l(y, y^{\prime}) = \begin{cases}
+|y - y^{\prime}| - \frac 1 2 &amp;\text{if } |y - y^{\prime}| &gt; 1 \\\\
+\frac 1 2 (y - y^{\prime})^2 &amp;\text{otherwise}
+\end{cases}
+$$
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_330x0_resize_q75_h2_box_3.webp 330w,/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_660x0_resize_q75_h2_box_3.webp 660w
+            
+              
+                ,/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_673x531_resize_q75_h2_box_3.webp 673w
+              
+            
+            
+              
+                ,/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_673x531_resize_q75_h2_box_3.webp 673w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="673"
+        height="531"
+        class="mx-auto my-0 rounded-md"
+        alt="loss"
+        loading="lazy" decoding="async"
+        
+          src="/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_660x0_resize_box_3.png"
+          srcset="/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_330x0_resize_box_3.png 330w,/zh-cn/study/pytorch/loss_hu1bc6778d881c4b38d3ad9d250c43100e_91554_660x0_resize_box_3.png 660w
+          
+            ,/zh-cn/study/pytorch/loss.png 673w
+          
+          
+            ,/zh-cn/study/pytorch/loss.png 673w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>下面的代码为使用Pytorch框架读入数据集数据的示例。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torchvision</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torch.utils</span> <span class="kn">import</span> <span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">d2l</span> <span class="kn">import</span> <span class="n">torch</span> <span class="k">as</span> <span class="n">d2l</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">d2l</span><span class="o">.</span><span class="n">use_svg_display</span><span class="p">()</span>    <span class="c1"># 使用svg显示图片以获得更高清晰度</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">trans</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mnist_train</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mnist_test</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">mnist_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">mnist_test</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>(60000, 10000)
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mnist_train</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></div><pre><code>torch.Size([1, 28, 28])
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_fashion_mnist_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;t-shirt&#39;</span><span class="p">,</span> <span class="s1">&#39;trousers&#39;</span><span class="p">,</span> <span class="s1">&#39;pullover&#39;</span><span class="p">,</span> <span class="s1">&#39;dress&#39;</span><span class="p">,</span> <span class="s1">&#39;coat&#39;</span><span class="p">,</span> <span class="s1">&#39;sandal&#39;</span><span class="p">,</span> <span class="s1">&#39;shirt&#39;</span><span class="p">,</span> <span class="s1">&#39;sneaker&#39;</span><span class="p">,</span> <span class="s1">&#39;bag&#39;</span><span class="p">,</span> <span class="s1">&#39;ankle boot&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">text_labels</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_images</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">,</span> <span class="n">titles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_cols</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="n">num_rows</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">d2l</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">imgs</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">18</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">show_images</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">titles</span><span class="o">=</span><span class="n">get_fashion_mnist_labels</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    
+    <picture  class="mx-auto my-0 rounded-md" >
+      <img
+        src="/zh-cn/study/pytorch/output_4_0.svg"
+        width="767.7"
+        height="191.304163"
+        class="mx-auto my-0 rounded-md"
+        alt="svg"
+        loading="lazy" decoding="async"
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_dataloader_workers</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">4</span>    <span class="c1"># 使用4个进程来读取数据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">train_iter</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">get_dataloader_workers</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">timer</span> <span class="o">=</span> <span class="n">d2l</span><span class="o">.</span><span class="n">Timer</span><span class="p">()</span>    <span class="c1"># 使用Timer函数计算数据读入时间</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_iter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">continue</span>
+</span></span><span class="line"><span class="cl"><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">timer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> sec&#39;</span>
+</span></span></code></pre></div><pre><code>'3.19 sec'
+</code></pre>
+<p>上述操作可以归并至一起，如下所示。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_data_fashion_mnist</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">resize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">trans</span> <span class="o">=</span> <span class="p">[</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">resize</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">trans</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">resize</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">trans</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mnist_train</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mnist_test</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">get_dataloader_workers</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">get_dataloader_workers</span><span class="p">()))</span>
+</span></span></code></pre></div>
       </div>
     </section>
     <footer class="max-w-prose pt-8 print:hidden">
