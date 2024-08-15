@@ -139,7 +139,7 @@
     "keywords": ["Pytorch","AI"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "4893"
+    "wordCount": "4974"
   }
   </script>
 
@@ -831,7 +831,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>4893 字</span>
+      <time datetime="2024-07-26 08:00:00 &#43;0800 CST">2024年7月26日</time><span class="px-2 text-primary-500">&middot;</span><span>4974 字</span>
     
 
     
@@ -1455,8 +1455,8 @@ $$</p>
 <p>令\(\textbf{X} = [\textbf{X}, 1], \textbf{w} = \begin{bmatrix}\textbf{w}\\b\end{bmatrix}\)，则\(\ell(\textbf{X}, \textbf{y}, \textbf{w}) = \frac 1 {2n} \lVert{\textbf{y} - \textbf{Xw}}\rVert^2\).</p>
 <p>由于上式为凹函数，故对<strong>w</strong>求导，可取出损失的最小值，此时的<strong>w</strong>（即原来的<strong>w</strong>和b）取最小值。
 $$
-\frac \partial {\partial\textbf{w}} \ell(\textbf{X}, \textbf{y}, \textbf{w}) = 0\\
-\Leftrightarrow \frac 1 n (\textbf{y} - \textbf{Xw})^T\textbf{X} = 0\\
+\frac \partial {\partial\textbf{w}} \ell(\textbf{X}, \textbf{y}, \textbf{w}) = 0\\\\
+\Leftrightarrow \frac 1 n (\textbf{y} - \textbf{Xw})^T\textbf{X} = 0\\\\
 \Leftrightarrow \mathbf{w}^* = (\mathbf{X}^T\textbf{X})^{-1}\mathbf{X}^T\textbf{y}
 $$</p>
 <p>线性回归都有显示解，但大多数深度学习模型都没有显示解，因此不能通过简单求导得出结论，一般可以通过一些优化算法来求解，如下所示为基础优化方法（梯度下降法）。</p>
@@ -2149,6 +2149,74 @@ $$
         src="/zh-cn/study/pytorch/output_16_0.svg"
         width="516.6"
         height="114.698357"
+        class="mx-auto my-0 rounded-md"
+        alt="svg"
+        loading="lazy" decoding="async"
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>Softmax回归精简版：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">d2l</span> <span class="kn">import</span> <span class="n">torch</span> <span class="k">as</span> <span class="n">d2l</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
+</span></span><span class="line"><span class="cl"><span class="n">train_iter</span><span class="p">,</span> <span class="n">test_iter</span> <span class="o">=</span> <span class="n">d2l</span><span class="o">.</span><span class="n">load_data_fashion_mnist</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>    <span class="c1"># std为标准差参数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">net</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">init_weights</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Sequential(
+  (0): Flatten(start_dim=1, end_dim=-1)
+  (1): Linear(in_features=784, out_features=10, bias=True)
+)
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">trainer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">d2l</span><span class="o">.</span><span class="n">train_ch3</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">train_iter</span><span class="p">,</span> <span class="n">test_iter</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">trainer</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    
+    <picture  class="mx-auto my-0 rounded-md" >
+      <img
+        src="/zh-cn/study/pytorch/output_4_1.svg"
+        width="238.965625"
+        height="183.35625"
         class="mx-auto my-0 rounded-md"
         alt="svg"
         loading="lazy" decoding="async"
