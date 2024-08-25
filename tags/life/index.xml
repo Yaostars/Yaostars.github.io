@@ -7,13 +7,20 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 [Xincheng Yao](https://github.com/Yaostars)</copyright>
-    <lastBuildDate>Tue, 06 Aug 2024 08:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2024 08:00:00 +0800</lastBuildDate>
     <atom:link href="https://yaostars.github.io/tags/life/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Journey to the Pearl River Delta</title>
+      <link>https://yaostars.github.io/life/travel_in_guangdong/</link>
+      <pubDate>Sat, 24 Aug 2024 08:00:00 +0800</pubDate>
+      <guid>https://yaostars.github.io/life/travel_in_guangdong/</guid>
+      <description>A travel worth reminiscing about&amp;hellip;</description>
+    </item>
+    <item>
       <title>Summer Car Learning Daily</title>
-      <link>https://yaostars.github.io/life/24_summer/</link>
+      <link>https://yaostars.github.io/life/driving_lessons/</link>
       <pubDate>Tue, 06 Aug 2024 08:00:00 +0800</pubDate>
-      <guid>https://yaostars.github.io/life/24_summer/</guid>
+      <guid>https://yaostars.github.io/life/driving_lessons/</guid>
       <description>Driving, aha!</description>
     </item>
   </channel>
