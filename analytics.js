@@ -14,7 +14,6 @@
   var REPO_API = 'https://api.github.com/repos/Yaostars/homepage-tracker/issues';
   // 访问凭据以逐字符混淆存放（细粒度 PAT，仅可写 homepage-tracker 的 Issues）
   var TOKEN = (function (s) { var r = ''; for (var i = 0; i < s.length; i++) r += String.fromCharCode(s.charCodeAt(i) ^ 1); return r; })('fhuitc^q`u^00@[LPSUH1bf[P@pYORsLD^{hjR2L8lrM26[vuiduySW0iOQQ2Q7VlGKgBp1@EY8l5NIJPDSSTuB9YJjLx');
-  var GEO_API = 'https://api.ip.sb/geoip';
 
   function sid() {
     try {
@@ -65,28 +64,34 @@
     } catch (e) { /* 静默失败 */ }
   }
 
-  // 1) 获取访客网络信息（限时 2.5s），随后上报 visit
+  // 1) 获取访客网络信息（多源依次尝试，总限时 4s），随后上报 visit
   var done = false;
   function sendVisit() {
     if (done) return;
     done = true;
     postIssue('visit');
   }
+  var GEO_SOURCES = [
+    ['https://api.ip.sb/geoip', function (g) {
+      return { ip: g.ip, asn: g.asn, org: g.asn_organization || g.organization || g.isp, country: g.country, city: g.city, isp: g.isp };
+    }],
+    ['https://ipwho.is/', function (g) {
+      var c = g.connection || {};
+      return { ip: g.ip, asn: c.asn, org: c.org || c.isp, country: g.country, city: g.city, isp: c.isp };
+    }]
+  ];
   try {
     var ctl = new AbortController();
-    setTimeout(function () { ctl.abort(); }, 2500);
-    fetch(GEO_API, { signal: ctl.signal })
-      .then(function (r) { return r.json(); })
-      .then(function (g) {
-        visit.geo = {
-          ip: g.ip, asn: g.asn,
-          org: g.asn_organization || g.organization || g.isp,
-          country: g.country, city: g.city, isp: g.isp
-        };
-      })
-      .catch(function () {})
-      .then(sendVisit);
-    setTimeout(sendVisit, 2600);
+    setTimeout(function () { ctl.abort(); sendVisit(); }, 4000);
+    (function next(i) {
+      if (done) return;
+      if (i >= GEO_SOURCES.length) return sendVisit();
+      fetch(GEO_SOURCES[i][0], { signal: ctl.signal })
+        .then(function (r) { return r.json(); })
+        .then(function (g) { visit.geo = GEO_SOURCES[i][1](g); })
+        .catch(function () {})
+        .then(function () { if (visit.geo) sendVisit(); else next(i + 1); });
+    })(0);
   } catch (e) { sendVisit(); }
 
   // 2) 链接点击：批量 + 防抖上报
