@@ -249,6 +249,10 @@
     if (on) autoTimer = setInterval(load, 10000);
   }
   autoBtn.onclick = function () { setAuto(!auto); };
+  // 后台标签的定时器会被浏览器节流：回到前台时立即刷一次
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible' && !app.hidden) load();
+  });
   document.getElementById('logout').onclick = function () {
     localStorage.removeItem('tracker_token'); location.reload();
   };
