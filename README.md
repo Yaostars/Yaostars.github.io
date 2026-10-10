@@ -49,15 +49,26 @@ Zhipu AI logo 已接入：官方图 `zhipu logo.png` 经自动去白底、裁边
 
 主题颜色与字体集中在 `style.css` 顶部的 `:root`（浅色）和 `[data-theme="dark"]`（深色）变量中，改 `--accent` 一个变量即可整体换主色。
 
-## 部署
+## 部署（已完成 ✅）
 
-**GitHub Pages（推荐）**
+本站已发布到 **https://yaostars.github.io/**（仓库 `Yaostars/Yaostars.github.io`，GitHub Pages 自动从 main 分支根目录构建）。
 
-1. 新建一个公开仓库（如 `username.github.io` 或任意名字）；
-2. 把本目录所有文件推上去；
-3. 仓库 Settings → Pages → Branch 选 `main`、目录选 `/ (root)`，保存后几分钟即可通过 `https://username.github.io/仓库名/` 访问。
+## 日后如何更新网站
 
-**Vercel / Netlify**：把整个文件夹拖进控制台即可，无需任何配置。
+```bash
+cd /Users/xincheng/Downloads/academic-homepage
+# 改完 index.html 等文件后：
+git add -A
+git commit -m "Update homepage"
+git push
+```
+
+推送即自动重新构建，一般 1 分钟内线上生效。
+
+两点说明：
+
+- **代理**：本机直连 github.com 不通，仓库已配置走本机 FlClash 代理（`127.0.0.1:7890`，写在仓库本地 `.git/config`）。推送前请确保 FlClash 在运行；若换用了其它代理端口，运行 `git config http.proxy http://127.0.0.1:新端口` 更新。
+- **授权令牌**：推送凭据是设备码授权得到的令牌（已存于仓库本地 `.git/config` 与 `/tmp/gh_token`）。如需吊销：GitHub → Settings → Applications → Authorized OAuth Apps → GitHub CLI → Revoke，之后重新走一次设备码授权即可。
 
 ## 目录结构
 

@@ -1,0 +1,4 @@
+# 本站允许抓取（以便搜索引擎读到页面里的 noindex 标签），收录控制由各页面的
+# <meta name="robots" content="noindex, nofollow"> 负责。
+User-agent: *
+Disallow:
