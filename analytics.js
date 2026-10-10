@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = '__WORKER_URL__/collect';
+  var ENDPOINT = 'https://homepage-analytics.yaostars.workers.dev/collect';
 
   function sid() {
     try {
