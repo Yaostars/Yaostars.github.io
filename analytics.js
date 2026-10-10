@@ -1,10 +1,11 @@
 /* ============================================================
-   访问统计打点脚本 v2（GitHub Issues 收集，大陆可达）
-   - 页面加载：api.ip.sb 获取访客 IP/机构/地区（2.5s 超时容错），
-     创建一条 visit Issue（含完整访问信息）
-   - 链接点击：批量缓存，防抖 4 秒 / 离开页面时合并为一条 clicks Issue
+   访问统计打点脚本 v3（GitHub Issues 收集，大陆可达）
+   - 页面加载：api.ip.sb → ipwho.is 依次获取访客 IP/机构/地区（共 4s 容错），
+     创建 visit Issue（含完整环境信息）
+   - 链接点击：批量缓存，防抖 4 秒合并为 clicks Issue
+   - 离开页面：leave Issue（停留时长 / 最大滚动深度 / 点击数）
    - 仅在 https://yaostars.github.io 上运行；任何异常都不影响页面本身
-   - 令牌为细粒度 PAT，仅可读写 Yaostars/homepage-tracker 的 Issues
+   - 凭据为细粒度 PAT（仅可写 Yaostars/homepage-tracker 的 Issues），混淆存放
    ============================================================ */
 (function () {
   'use strict';
@@ -31,25 +32,42 @@
     return d.toISOString().replace('T', ' ').slice(0, 16);
   }
 
+  function connInfo() {
+    try {
+      var c = navigator.connection || {};
+      return [c.effectiveType, c.downlink ? c.downlink + 'Mbps' : '', c.rtt ? c.rtt + 'ms' : '']
+        .filter(Boolean).join(' ');
+    } catch (e) { return ''; }
+  }
+
   var visit = {
-    v: 1,
+    v: 3,
     sid: sid(),
     ts: Date.now(),
     path: location.pathname + location.search,
     referrer: document.referrer || '',
     title: document.title,
     ua: navigator.userAgent,
+    platform: navigator.platform || '',
+    viewport: innerWidth + 'x' + innerHeight,
+    screen: screen.width + 'x' + screen.height,
+    dpr: window.devicePixelRatio || 1,
+    cores: navigator.hardwareConcurrency || 0,
+    memory: navigator.deviceMemory || 0,       // 仅 Chrome 提供，其余为 0
+    touch: navigator.maxTouchPoints || 0,
+    net: connInfo(),
     tz: (Intl.DateTimeFormat().resolvedOptions().timeZone) || '',
     lang: navigator.language || '',
-    screen: screen.width + 'x' + screen.height,
+    dnt: navigator.doNotTrack || '',
     geo: null
   };
 
-  function postIssue(kind, clicks) {
+  function postIssue(kind, extra, clicks) {
     try {
       var org = visit.geo && visit.geo.org ? visit.geo.org : 'unknown';
       var title = '[' + kind + '] ' + stamp() + ' · ' + org + ' · ' + visit.sid.slice(0, 6);
       var body = { visit: visit };
+      if (extra) body.extra = extra;
       if (clicks) body.clicks = clicks;
       fetch(REPO_API, {
         method: 'POST',
@@ -95,11 +113,15 @@
   } catch (e) { sendVisit(); }
 
   // 2) 链接点击：批量 + 防抖上报
-  var clicks = [], timer = null;
-  function flush() {
+  var clicks = [], timer = null, totalClicks = 0;
+  function flushClicks() {
     timer = null;
-    if (!clicks.length) return;
-    postIssue('clicks', clicks.splice(0));
+    if (!clicks.length) return null;
+    return clicks.splice(0);
+  }
+  function flushAsIssue() {
+    var batch = flushClicks();
+    if (batch) postIssue('clicks', null, batch);
   }
   document.addEventListener('click', function (e) {
     try {
@@ -107,14 +129,36 @@
       var a = el && el.closest ? el.closest('a') : null;
       if (!a || !a.href) return;
       clicks.push({ ts: Date.now(), link: a.href, text: (a.textContent || '').trim().slice(0, 60) });
+      totalClicks++;
       clearTimeout(timer);
-      timer = setTimeout(flush, 4000);
+      timer = setTimeout(flushAsIssue, 4000);
     } catch (err) {}
   }, true);
 
-  // 3) 离开页面时把剩余点击一次性上报
-  window.addEventListener('pagehide', flush);
+  // 3) 最大滚动深度（passive 监听）
+  var maxScroll = 0;
+  window.addEventListener('scroll', function () {
+    try {
+      var h = document.documentElement.scrollHeight - innerHeight;
+      var pct = h > 0 ? Math.round(((scrollY || 0) + innerHeight) / (h + innerHeight) * 100) : 100;
+      if (pct > maxScroll) maxScroll = pct;
+    } catch (e) {}
+  }, { passive: true });
+
+  // 4) 离开页面：上报停留时长 / 滚动深度 / 剩余点击
+  var left = false;
+  function leave() {
+    if (left) return;
+    left = true;
+    var batch = flushClicks();
+    postIssue('leave', {
+      dwell_ms: Date.now() - visit.ts,
+      scroll_pct: maxScroll,
+      click_count: totalClicks
+    }, batch || undefined);
+  }
+  window.addEventListener('pagehide', leave);
   document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden') flush();
+    if (document.visibilityState === 'hidden') { flushAsIssue(); leave(); }
   });
 })();

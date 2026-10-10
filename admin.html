@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Visit Analytics · Xincheng Yao</title>
+  <style>
+    :root {
+      --bg:#f6f7f8; --card:#fff; --text:#1f2328; --muted:#6b7280;
+      --accent:#0969da; --hairline:#e1e4e8; --green:#1a7f37;
+    }
+    [data-theme="dark"] {
+      --bg:#16181c; --card:#1e2126; --text:#d6d9de; --muted:#9aa1ab;
+      --accent:#5d9fe8; --hairline:#2c3036; --green:#6bc47a;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text);
+           font-family:-apple-system,"PingFang SC","Helvetica Neue",sans-serif; line-height:1.6; }
+    .wrap { max-width:64rem; margin:0 auto; padding:1.5rem 1rem 3.5rem; }
+    h1 { font-size:1.25rem; margin:.2rem 0; }
+    .sub { color:var(--muted); font-size:.82rem; }
+    .cards { display:flex; gap:.8rem; flex-wrap:wrap; margin:1rem 0; }
+    .card { background:var(--card); border:1px solid var(--hairline); border-radius:10px;
+            padding:.7rem 1.1rem; min-width:7.5rem; }
+    .card b { display:block; font-size:1.45rem; }
+    .card span { color:var(--muted); font-size:.75rem; }
+    h2 { font-size:.95rem; margin:1.8rem 0 .6rem; border-bottom:1px solid var(--hairline); padding-bottom:.35rem; }
+    details { background:var(--card); border:1px solid var(--hairline); border-radius:10px;
+              margin:.5rem 0; padding:.6rem .95rem; }
+    summary { cursor:pointer; font-size:.92rem; }
+    summary b { font-size:.95rem; }
+    .edu { color:var(--green); font-size:.8rem; }
+    .meta { color:var(--muted); font-size:.8rem; margin:.35rem 0 .45rem; }
+    .meta b { color:var(--text); font-weight:600; }
+    .ev { font-size:.85rem; padding:.15rem 0 .15rem .9rem; border-left:2px solid var(--hairline); margin:.18rem 0; word-break:break-all; }
+    .ev a { color:var(--accent); text-decoration:none; } .ev a:hover { text-decoration:underline; }
+    .leave { color:var(--muted); font-style:italic; }
+    table { border-collapse:collapse; width:100%; background:var(--card); font-size:.86rem; }
+    td,th { border:1px solid var(--hairline); padding:.4rem .6rem; text-align:left; }
+    th { background:rgba(125,125,125,.08); }
+    button { font:inherit; border:1px solid var(--hairline); background:var(--card); color:var(--text);
+             border-radius:8px; padding:.35rem .8rem; cursor:pointer; }
+    button:hover { border-color:var(--accent); color:var(--accent); }
+    .bar { display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin:.8rem 0; }
+    .dot { width:.6rem; height:.6rem; border-radius:50%; background:var(--green); display:inline-block; }
+    #gate { max-width:26rem; margin:4rem auto; background:var(--card); border:1px solid var(--hairline);
+            border-radius:12px; padding:1.5rem; }
+    #gate input { width:100%; font:inherit; padding:.5rem .6rem; border:1px solid var(--hairline);
+                  border-radius:8px; background:var(--bg); color:var(--text); margin:.6rem 0; }
+    .err { color:#cf222e; font-size:.85rem; min-height:1.2em; }
+    a.plain { color:var(--accent); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate" hidden>
+    <h1>访问统计 · 登录</h1>
+    <p class="sub">输入可读取 <b>Yaostars/homepage-tracker</b> Issues 的 GitHub 令牌（Fine-grained PAT，Issues: Read 权限）。令牌只保存在你本浏览器，不会上传。</p>
+    <input id="token" type="password" placeholder="github_pat_…" autocomplete="off">
+    <div class="err" id="gateErr"></div>
+    <button id="tokenGo">查看统计</button>
+    <p class="sub" style="margin-top:1rem">没有令牌？在 <a class="plain" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub 令牌页</a> 创建：Repository access 选 Only select repositories → homepage-tracker；Permissions → Issues: Read-only。</p>
+  </div>
+
+  <div id="app" hidden>
+    <h1>访问统计 <button id="theme" style="float:right;font-size:.8rem;padding:.2rem .6rem">◐</button></h1>
+    <div class="bar">
+      <span class="dot"></span><span class="sub" id="status">加载中…</span>
+      <span style="flex:1"></span>
+      <button id="refresh">立即刷新</button>
+      <button id="auto">自动刷新：开</button>
+      <button id="logout">退出令牌</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <h2>访问明细（点击展开行为轨迹）</h2>
+    <div id="visits"></div>
+    <h2>网络机构 Top</h2>
+    <table id="orgs"><tr><th>机构（ASN）</th><th>访问数</th></tr></table>
+    <h2>被点击链接 Top</h2>
+    <table id="links"><tr><th>链接</th><th>点击数</th></tr></table>
+    <p class="sub" style="margin-top:2.5rem">数据源：私有仓库 homepage-tracker 的 Issues · 时区均为北京时间</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var API = 'https://api.github.com/repos/Yaostars/homepage-tracker/issues?state=all&per_page=100&sort=created&direction=desc';
+  var EDU = /university|college|institute|hospital|clinic|research|academy|cernet|education/i;
+  var token = localStorage.getItem('tracker_token') || '';
+  var autoTimer = null;
+
+  // ---------- 工具 ----------
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function bj(ms) {
+    try {
+      return new Date(Number(ms) + 8 * 3600 * 1000).toISOString().replace('T', ' ').slice(5, 16);
+    } catch (e) { return '?'; }
+  }
+  function dur(ms) {
+    var s = Math.round(ms / 1000);
+    if (s < 90) return s + ' 秒';
+    return Math.round(s / 60) + ' 分钟';
+  }
+  function uaShort(ua) {
+    if (!ua) return '';
+    var os = /Windows/.test(ua) ? 'Windows' : /iPad/.test(ua) ? 'iPad' : /iPhone/.test(ua) ? 'iPhone'
+      : /Mac OS X/.test(ua) ? 'macOS' : /Android/.test(ua) ? 'Android' : /Linux/.test(ua) ? 'Linux' : '';
+    var br = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome'
+      : (/Safari\//.test(ua) && /Version\//.test(ua)) ? 'Safari' : /Firefox\//.test(ua) ? 'Firefox'
+      : /bot|spider|curl|python/i.test(ua) ? 'Bot' : '';
+    return [br, os].filter(Boolean).join(' · ') || '未知客户端';
+  }
+  function eduTag(org) { return EDU.test(org || '') ? ' <span class="edu">[教育/科研]</span>' : ''; }
+
+  // ---------- 登录门 ----------
+  var gate = document.getElementById('gate'), app = document.getElementById('app');
+  function showGate(err) {
+    gate.hidden = false; app.hidden = true;
+    document.getElementById('gateErr').textContent = err || '';
+  }
+  function tryToken(t, cb) {
+    fetch('https://api.github.com/repos/Yaostars/homepage-tracker', {
+      headers: { Authorization: 'Bearer ' + t, Accept: 'application/vnd.github+json' }
+    }).then(function (r) {
+      if (r.status === 200) { token = t; localStorage.setItem('tracker_token', t); cb(true); }
+      else if (r.status === 401 || r.status === 403 || r.status === 404) cb(false);
+      else cb(false);
+    }).catch(function () { cb(false); });
+  }
+  document.getElementById('tokenGo').onclick = function () {
+    var t = document.getElementById('token').value.trim();
+    if (!t) return;
+    tryToken(t, function (ok) { ok ? boot() : showGate('令牌无效或无权限（需要 homepage-tracker 的 Issues 读取权限）'); });
+  };
+  document.getElementById('token').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('tokenGo').click();
+  });
+
+  // ---------- 数据加载与渲染 ----------
+  function load() {
+    var status = document.getElementById('status');
+    status.textContent = '刷新中…';
+    fetch(API, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) throw new Error('TOKEN');
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(render)
+      .catch(function (e) {
+        if (e.message === 'TOKEN') { localStorage.removeItem('tracker_token'); showGate('令牌已失效，请重新输入'); }
+        else status.textContent = '加载失败（网络原因），稍后自动重试';
+      });
+  }
+
+  function render(issues) {
+    document.getElementById('status').textContent = '最近更新 ' + new Date().toLocaleTimeString('zh-CN', { hour12: false });
+    var visits = {};
+    issues.forEach(function (it) {
+      var body;
+      try { body = JSON.parse(it.body); } catch (e) { return; }
+      if (!body) return;
+      var v = body.visit || {};
+      if (!v.sid) return;
+      var rec = visits[v.sid] = visits[v.sid] || { visit: v, clicks: [], leave: null };
+      if (!rec.visit.geo && v.geo) { rec.visit = v; }
+      if (v.ts && v.ts > (rec.latest || 0)) rec.latest = v.ts;
+      (body.clicks || []).forEach(function (c) { rec.clicks.push(c); });
+      if (body.extra && body.extra.dwell_ms != null) rec.leave = body.extra;
+    });
+
+    var list = Object.keys(visits).map(function (sid) { return visits[sid]; });
+    list.sort(function (a, b) { return (b.visit.ts || 0) - (a.visit.ts || 0); });
+
+    // 汇总卡片
+    var today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+    var todayVisits = 0, todayClicks = 0, totalClicks = 0;
+    list.forEach(function (r) {
+      var d = new Date((r.visit.ts || 0) + 8 * 3600 * 1000).toISOString().slice(0, 10);
+      if (d === today) { todayVisits++; todayClicks += (r.clicks || []).length; }
+      totalClicks += (r.clicks || []).length;
+    });
+    document.getElementById('cards').innerHTML =
+      card(todayVisits, '今日访问') + card(todayClicks, '今日点击') +
+      card(list.length, '累计访问') + card(totalClicks, '累计点击');
+
+    // 访问明细
+    document.getElementById('visits').innerHTML = list.map(function (r) {
+      var v = r.visit, geo = v.geo || {};
+      var org = geo.org || 'unknown';
+      var dwell = r.leave ? dur(r.leave.dwell_ms) : '';
+      var scrollPct = r.leave ? r.leave.scroll_pct + '%' : '';
+      return '<details><summary><b>' + bj(v.ts) + '</b> — ' + esc(org) + eduTag(org) +
+        ' · ' + esc(geo.country || '') + ' ' + esc(geo.city || '') +
+        (dwell ? ' · 停留 ' + dwell : '') + ' · ' + (r.clicks || []).length + ' 次点击</summary>' +
+        '<div class="meta">' +
+        'IP <b>' + esc(geo.ip || '-') + '</b> · ASN <b>' + esc(geo.asn || '-') + '</b> · ' + esc(uaShort(v.ua)) +
+        ' · 屏幕 ' + esc(v.screen || '-') + ' @' + esc(v.dpr || '') + 'x' +
+        ' · 视口 ' + esc(v.viewport || '-') +
+        (v.cores ? ' · ' + esc(v.cores) + '核' : '') +
+        (v.memory ? ' / ' + esc(v.memory) + 'GB' : '') +
+        (v.touch ? ' · 触控' : '') +
+        (v.net ? ' · 网络 ' + esc(v.net) : '') +
+        ' · ' + esc(v.tz || '') + ' · ' + esc(v.lang || '') +
+        (v.referrer ? '<br>来路 <b>' + esc(v.referrer) + '</b>' : '') +
+        (scrollPct ? '<br>滚动深度 ' + scrollPct : '') +
+        '</div>' +
+        '<div class="ev">👁 进入 ' + esc(v.path || '/') + '（' + esc(v.title || '') + '）</div>' +
+        (r.clicks || []).sort(function (a, b) { return a.ts - b.ts; }).map(function (c) {
+          return '<div class="ev">🖱 ' + bj(c.ts) + ' <a href="' + esc(c.link) + '" target="_blank" rel="noopener">' +
+            esc((c.text || c.link).slice(0, 50)) + '</a></div>';
+        }).join('') +
+        (r.leave ? '<div class="ev leave">↩ 离开 · 共停留 ' + dur(r.leave.dwell_ms) + ' · ' + r.leave.click_count + ' 次点击</div>' : '') +
+        '</details>';
+    }).join('') || '<p class="sub">暂无访问记录</p>';
+
+    // 机构 / 链接 Top
+    var orgs = {}, links = {};
+    list.forEach(function (r) {
+      var o = (r.visit.geo || {}).org || 'unknown';
+      orgs[o] = (orgs[o] || 0) + 1;
+      (r.clicks || []).forEach(function (c) { links[c.link] = (links[c.link] || 0) + 1; });
+    });
+    function topTable(el, m, fmt) {
+      var rows = Object.keys(m).map(function (k) { return [k, m[k]]; })
+        .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 15);
+      el.innerHTML += rows.map(function (x) { return '<tr><td>' + fmt(x[0]) + '</td><td>' + x[1] + '</td></tr>'; }).join('');
+    }
+    topTable(document.getElementById('orgs'), orgs, function (o) { return esc(o) + eduTag(o); });
+    topTable(document.getElementById('links'), links, function (l) {
+      return '<a class="plain" href="' + esc(l) + '" target="_blank" rel="noopener">' + esc(l.slice(0, 70)) + '</a>';
+    });
+  }
+  function card(n, label) { return '<div class="card"><b>' + n + '</b><span>' + label + '</span></div>'; }
+
+  // ---------- 交互 ----------
+  document.getElementById('refresh').onclick = load;
+  var autoBtn = document.getElementById('auto'), auto = true;
+  function setAuto(on) {
+    auto = on;
+    autoBtn.textContent = '自动刷新：' + (on ? '开' : '关');
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    if (on) autoTimer = setInterval(load, 10000);
+  }
+  autoBtn.onclick = function () { setAuto(!auto); };
+  document.getElementById('logout').onclick = function () {
+    localStorage.removeItem('tracker_token'); location.reload();
+  };
+  document.getElementById('theme').onclick = function () {
+    var r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+    try { localStorage.setItem('dash_theme', r.dataset.theme || ''); } catch (e) {}
+  };
+  try {
+    if (localStorage.getItem('dash_theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+  } catch (e) {}
+
+  function boot() { gate.hidden = true; app.hidden = false; load(); setAuto(true); }
+  if (token) tryToken(token, function (ok) { ok ? boot() : showGate('已保存的令牌已失效，请重新输入'); });
+  else showGate('');
+})();
+</script>
+</body>
+</html>
